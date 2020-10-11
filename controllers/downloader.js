@@ -15,8 +15,6 @@ exports.downloader = async (req, res) => {
 
         res.send('this woorks')
     }
-
-    
      catch (error) {
         return res.status(433).json(error)        
     }
@@ -27,7 +25,7 @@ exports.findQualityLabels = () => {
         const qualityLabels = new Set();
 
         const urlInfo = await ytdl.getInfo(URL);
-        const formats = ytdl.filterFormats(info.formats, 'videoonly' );
+        const videoFormats = ytdl.filterFormats(info.formats, 'videoonly' );
 
         formats.map(format => qualityLabels.add(format.quality));
         
@@ -38,25 +36,3 @@ exports.findQualityLabels = () => {
     }
 }
 
-     
-exports.mainPage = (req,res ) => {
-    res.render('index', {error: null});
-}
-
-/*
-    1) Enter the url
-    2) Validate the url
-        2.1) if valid url
-            2.1.2) get quality labels
-            2.1.3) select quality labels
-            2.1.4) send Quality label
-            2.1.5) validate quality label
-            2.1.6) if quality label is valid
-                2.1-7) return downloaded video
-        2.2) if not valid
-            2.2.1) return error "url is not valid"
-
-    
-        
-
- */

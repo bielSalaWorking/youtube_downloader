@@ -9,19 +9,4 @@ const validateURL = () => {
     }
 }
 
-module.exports = {
-    validateURL,
-}
-
-// hd1080
-
-// hd720
-
-// large
-
-// medium
-
-// small
-
-// tiny
-
+module.exports =  validateURL;
