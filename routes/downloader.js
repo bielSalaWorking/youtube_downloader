@@ -1,14 +1,18 @@
-const express = require('express');
-const router = express.Router();
+const {Router} = require('express');
+const router = Router();
 const downloadController = require('../controllers/downloader');
-const {validateUrl, validateFORMAT} = require('../middleware/urlValidation');
-
+const validateQualityLabel = require('../middleware/validateQualityLabel');
+const validateURL = require('../middleware/validateUrl');
 
 router.get(
   '/download',
-  validateFORMAT(),
-  //validateUrl(),
+  validateQualityLabel(),
+  validateURL(),
   downloadController.downloader
 );
+ router.get(
+   '/qualityLabels',
+   downloadController.qualityLabels
+ )
 
 module.exports = router;
